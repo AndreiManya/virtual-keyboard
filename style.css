@@ -26,3 +26,30 @@ dl,
 dd {
   margin: 0;
 }
+
+.area {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 100px auto;
+}
+
+.key-container { 
+  width: 1418px;
+  margin: auto;
+  padding: 10px;
+  background: gray;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.key {
+  display: flex;
+  background-color: bisque; 
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  height: 80px;
+  cursor: pointer;
+  margin: 12px 0 0 12px;
+}
