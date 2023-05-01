@@ -53,3 +53,10 @@ dd {
   cursor: pointer;
   margin: 12px 0 0 12px;
 }
+
+
+
+.toggled {
+  background-color: aquamarine; 
+  transition: all 0.3s ease-in-out;
+}
