@@ -73,7 +73,9 @@ const clicked = (item) => {
 }
 BODY.insertAdjacentHTML('beforeend', `<textarea class="area"></textarea>`);
 BODY.insertAdjacentHTML('beforeend', `<section class="key-container"></section>`);
-let keyContainer = document.querySelector('.key-container');
+let keyContainer = document.querySelector('.key-container'),
+    textArea = document.querySelector('.area');
+textArea.setAttribute('rows', 8);
 keys.forEach((e) => {
     let elem = document.createElement("span");
     elem.classList.add("key");
@@ -92,5 +94,5 @@ document.addEventListener('keydown', (event) => {
     // }
     let item = document.querySelector(`#${event.code}`);
     clicked(item);
-    console.log(item)
+    textArea.focus();
   });
