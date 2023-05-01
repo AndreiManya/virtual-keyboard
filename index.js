@@ -64,7 +64,61 @@ keys = [
         {value:'↓', id: 'ArrowDown'},
         {value:'→', id: 'ArrowRight'},
         {value:'Ctrl', id: 'ControlRight'}
-       ]; 
+       ],
+keysValue = {
+    'Backquote': '`',
+    'Digit1': '1', 
+    'Digit2': '2', 
+    'Digit3': '3',
+    'Digit4': '4',
+    'Digit5': '5',
+    'Digit6': '6',
+    'Digit7': '7',
+    'Digit8': '8',
+    'Digit9': '9',
+    'Digit0': '0',
+    'Minus': '-',
+    'Equal': '=',
+    'KeyQ': 'q',
+    'KeyW': 'w',
+    'KeyE': 'e',
+    'KeyR': 'r',
+    'KeyT': 't',
+    'KeyY': 'y',
+    'KeyU': 'u',
+    'KeyI': 'i',
+    'KeyO': 'o',
+    'KeyP': 'p',
+    'BracketLeft': '[',
+    'BracketRight': ']',
+    'Backslash': "|",
+    'KeyA': 'a',
+    'KeyS': 's',
+    'KeyD': 'd',
+    'KeyF': 'f',
+    'KeyG': 'g',
+    'KeyH': 'h',
+    'KeyJ': 'j',
+    'KeyK': 'k',
+    'KeyL': 'l',
+    'Semicolon': ';',
+    'Quote': '"',
+    'KeyZ': 'z',
+    'KeyX': 'x',
+    'KeyC': 'c',
+    'KeyV': 'v',
+    'KeyB': 'b',
+    'KeyN': 'n',
+    'KeyM': 'm',
+    'Comma': ',',
+    'Period': '.',
+    'Slash': '/',
+    'ArrowUp': '↑',
+    'Space': ' ',
+    'ArrowLeft': '←',
+    'ArrowDown': '↓',
+    'ArrowRight': '→'
+    }; 
 const clicked = (item) => { 
     item && item.classList.toggle('toggled');
     setTimeout(() => {
@@ -82,16 +136,49 @@ keys.forEach((e) => {
     elem.id = `${e.id}`;
     elem.innerText = e.value;
     elem.style = e.width ? e.width : 'width: 80px;';
-    elem.addEventListener('click', () => {
-        clicked(elem);
+    elem.addEventListener('click', (element) => {
+        if (element.target.id === 'Delete') { 
+            textArea.textContent = textArea.value.split('').reverse().splice(0, 2).reverse().join('');
+        }
+        textArea.focus();
+        clicked(element.target);
+        textArea.textContent = checkKeys(element.target.id) && textArea.value + keysValue[element.target.id];
+
     })
     keyContainer.appendChild(elem);
 })
-
+function checkKeys(key) {
+    return ['Backquote', 'Digit1','Digit2','Digit3','Digit4','Digit5','Digit6','Digit7','Digit8','Digit9','Digit0','KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'Backslash',  'Minus', 'Equal','Delete','Backspace', 'Space', 'BracketLeft',
+    'BracketRight',
+    'KeyA',
+    'KeyS',
+    'KeyD',
+    'KeyF',
+    'KeyG',
+    'KeyH',
+    'KeyJ',
+    'KeyK',
+    'KeyL',
+    'Semicolon',
+    'Quote',
+    'KeyZ',
+    'KeyX',
+    'KeyC',
+    'KeyV',
+    'KeyB',
+    'KeyN',
+    'KeyM',
+    'Comma',
+    'Period',
+    'Slash',
+    'ArrowUp',
+    'Space',
+    'ArrowLeft',
+    'ArrowDown',
+    'ArrowRight'].includes(key);
+  }
 document.addEventListener('keydown', (event) => {
-    // if (event.code == 'KeyZ' && (event.ctrlKey || event.metaKey)) {
-    //   alert('Undo!')
-    // }
+    console.log(event.code)
     let item = document.querySelector(`#${event.code}`);
     clicked(item);
     textArea.focus();
